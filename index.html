@@ -1204,6 +1204,12 @@ No hidden costs</p>
 
                         case 'stagger-cards':
                             const cards = entry.target.querySelectorAll('.theme-card, .holo-card');
+                            // Set initial state
+                            cards.forEach(card => {
+                                card.style.opacity = '0';
+                                card.style.transform = 'translateY(80px) scale(0.9)';
+                            });
+                            // Animate in
                             anime({
                                 targets: cards,
                                 opacity: [0, 1],
@@ -1236,32 +1242,22 @@ No hidden costs</p>
             // Add animation attributes to sections
             const sections = document.querySelectorAll('section');
             sections.forEach((section, index) => {
-                section.classList.add('animate-on-scroll');
-
                 // Assign animation types based on section
                 if (section.classList.contains('themes-section')) {
                     section.dataset.animation = 'stagger-cards';
+                    // Don't hide parent for stagger animations
                 } else if (section.classList.contains('features-section')) {
                     section.dataset.animation = 'stagger-cards';
+                    // Don't hide parent for stagger animations
                 } else if (section.classList.contains('stats-section')) {
+                    section.classList.add('animate-on-scroll');
                     section.dataset.animation = 'zoom-in';
-                } else if (index % 2 === 0) {
-                    section.dataset.animation = 'fade-up';
                 } else {
+                    section.classList.add('animate-on-scroll');
                     section.dataset.animation = 'fade-up';
                 }
 
                 scrollObserver.observe(section);
-            });
-
-            // Observe individual theme cards if they exist
-            document.querySelectorAll('.theme-card').forEach(card => {
-                card.style.opacity = '0';
-            });
-
-            // Observe holographic cards
-            document.querySelectorAll('.holo-card').forEach(card => {
-                card.style.opacity = '0';
             });
         });
 
