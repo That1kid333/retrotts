@@ -1081,8 +1081,21 @@ No hidden costs</p>
                 });
             }
 
-            // Navigate directly to GitHub releases page
-            window.location.href = 'https://github.com/That1kid333/retrotts/releases/latest';
+            // Firebase Storage download URL
+            const downloadUrl = 'https://firebasestorage.googleapis.com/v0/b/streamblur-923d5.firebasestorage.app/o/retrotts-videos%2FRetroTTS-AllThemes-v1.0.zip?alt=media';
+
+            // Create temporary link and trigger download
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = 'RetroTTS-AllThemes-v1.0.zip';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Redirect to thank you page
+            setTimeout(function() {
+                window.location.href = 'thank-you.html';
+            }, 500);
         }
 
         // ============================================
