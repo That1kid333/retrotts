@@ -7,6 +7,7 @@ import { AmberTheme } from "./Videos/AmberTheme";
 import { NeonTheme } from "./Videos/NeonTheme";
 import { MidnightTheme } from "./Videos/MidnightTheme";
 import { AllThemesShowcase } from "./Videos/AllThemesShowcase";
+import { HolographicCards } from "./Videos/HolographicCards";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -85,6 +86,17 @@ export const RemotionRoot: React.FC = () => {
         fps={30}
         width={1920}
         height={1080}
+      />
+
+      {/* 🌟 HOLOGRAPHIC CARDS - Steampunk animated info cards */}
+      <Composition
+        id="HolographicCards"
+        component={HolographicCards}
+        durationInFrames={300} // 10 seconds
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{}}
       />
     </>
   );

@@ -423,6 +423,198 @@
             transform: translateY(0);
         }
 
+        /* Holographic Features Section */
+        .holographic-features {
+            padding: 100px 20px;
+            background: #000000;
+            position: relative;
+            z-index: 1;
+        }
+
+        .holographic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .holo-card {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 3px solid;
+            box-shadow: 0 0 20px;
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+            animation: holo-float 6s ease-in-out infinite, holo-pulse 3s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .holo-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .holo-card::before {
+            content: "";
+            position: absolute;
+            inset: -20px;
+            filter: blur(20px);
+            opacity: 0.6;
+            z-index: -1;
+            animation: holo-glow-pulse 3s ease-in-out infinite;
+        }
+
+        .holo-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid;
+            border-left: 2px solid;
+            animation: corner-glow 2s ease-in-out infinite;
+        }
+
+        .holo-card-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('images/cyberpunk-landscape.jpg');
+            background-size: cover;
+            opacity: 0.3;
+            filter: blur(1px);
+        }
+
+        .holo-card-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .holo-card-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+            letter-spacing: 2px;
+            animation: text-glow 3s ease-in-out infinite;
+        }
+
+        .holo-card-desc {
+            font-size: 1rem;
+            color: #ffffff;
+            text-align: center;
+            line-height: 1.6;
+            white-space: pre-line;
+        }
+
+        .holo-rivet {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: rivet-glow 2s ease-in-out infinite;
+        }
+
+        .rivet-tl { top: 10px; left: 10px; }
+        .rivet-tr { top: 10px; right: 10px; }
+        .rivet-bl { bottom: 10px; left: 10px; }
+
+        .scanlines {
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.1) 2px,
+                rgba(0, 0, 0, 0.1) 4px
+            );
+            pointer-events: none;
+        }
+
+        /* Color variants */
+        .holo-magenta {
+            border-color: #ff00ff;
+            box-shadow: 0 0 20px #ff00ff;
+        }
+        .holo-magenta::before { background: radial-gradient(ellipse, #ff00ff, transparent); }
+        .holo-magenta::after { border-color: #ff00ff; box-shadow: 0 0 10px #ff00ff; }
+        .holo-magenta .holo-card-title { color: #ff00ff; text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; }
+        .holo-magenta .holo-card-desc { text-shadow: 0 0 5px #ff00ff; }
+        .holo-magenta .holo-rivet { background: radial-gradient(circle, #ff00ff, transparent); box-shadow: 0 0 10px #ff00ff; }
+        .holo-magenta .holo-card-bg { background-position: center 20%; }
+
+        .holo-cyan {
+            border-color: #00ffff;
+            box-shadow: 0 0 20px #00ffff;
+        }
+        .holo-cyan::before { background: radial-gradient(ellipse, #00ffff, transparent); }
+        .holo-cyan::after { border-color: #00ffff; box-shadow: 0 0 10px #00ffff; }
+        .holo-cyan .holo-card-title { color: #00ffff; text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; }
+        .holo-cyan .holo-card-desc { text-shadow: 0 0 5px #00ffff; }
+        .holo-cyan .holo-rivet { background: radial-gradient(circle, #00ffff, transparent); box-shadow: 0 0 10px #00ffff; }
+        .holo-cyan .holo-card-bg { background-position: center 45%; }
+
+        .holo-green {
+            border-color: #00ff00;
+            box-shadow: 0 0 20px #00ff00;
+        }
+        .holo-green::before { background: radial-gradient(ellipse, #00ff00, transparent); }
+        .holo-green::after { border-color: #00ff00; box-shadow: 0 0 10px #00ff00; }
+        .holo-green .holo-card-title { color: #00ff00; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00; }
+        .holo-green .holo-card-desc { text-shadow: 0 0 5px #00ff00; }
+        .holo-green .holo-rivet { background: radial-gradient(circle, #00ff00, transparent); box-shadow: 0 0 10px #00ff00; }
+        .holo-green .holo-card-bg { background-position: center 65%; }
+
+        .holo-amber {
+            border-color: #ffaa00;
+            box-shadow: 0 0 20px #ffaa00;
+        }
+        .holo-amber::before { background: radial-gradient(ellipse, #ffaa00, transparent); }
+        .holo-amber::after { border-color: #ffaa00; box-shadow: 0 0 10px #ffaa00; }
+        .holo-amber .holo-card-title { color: #ffaa00; text-shadow: 0 0 10px #ffaa00, 0 0 20px #ffaa00; }
+        .holo-amber .holo-card-desc { text-shadow: 0 0 5px #ffaa00; }
+        .holo-amber .holo-rivet { background: radial-gradient(circle, #ffaa00, transparent); box-shadow: 0 0 10px #ffaa00; }
+        .holo-amber .holo-card-bg { background-position: center 85%; }
+
+        @keyframes holo-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes holo-pulse {
+            0%, 100% { box-shadow: 0 0 20px; }
+            50% { box-shadow: 0 0 40px; }
+        }
+
+        @keyframes holo-glow-pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes corner-glow {
+            0%, 100% { box-shadow: 0 0 5px; }
+            50% { box-shadow: 0 0 15px; }
+        }
+
+        @keyframes rivet-glow {
+            0%, 100% { box-shadow: 0 0 5px; }
+            50% { box-shadow: 0 0 15px; }
+        }
+
+        @keyframes text-glow {
+            0%, 100% { text-shadow: 0 0 10px, 0 0 20px; }
+            50% { text-shadow: 0 0 20px, 0 0 30px, 0 0 40px; }
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .logo {
@@ -451,6 +643,27 @@
 
             .hero {
                 padding: 20px 10px;
+            }
+
+            .holographic-features {
+                padding: 60px 10px;
+            }
+
+            .holographic-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .holo-card {
+                height: 250px;
+            }
+
+            .holo-card-title {
+                font-size: 1.4rem;
+            }
+
+            .holo-card-desc {
+                font-size: 0.9rem;
             }
 
             .video-showcase {
@@ -545,6 +758,69 @@
         <p style="margin-top: 30px; color: #00ff00; font-size: 1.2rem; position: relative; z-index: 2;">
             ✓ 100% FREE  ✓ OPEN SOURCE  ✓ 6 EPIC THEMES
         </p>
+    </section>
+
+    <!-- Holographic Features Section -->
+    <section class="holographic-features fade-in">
+        <h2 class="section-title" style="margin-bottom: 60px;">⚡ SYSTEM FEATURES ⚡</h2>
+
+        <div class="holographic-grid">
+            <!-- Card 1: 6 Epic Themes -->
+            <div class="holo-card holo-magenta">
+                <div class="holo-card-bg"></div>
+                <div class="holo-rivet rivet-tl"></div>
+                <div class="holo-rivet rivet-tr"></div>
+                <div class="holo-rivet rivet-bl"></div>
+                <div class="holo-card-content">
+                    <h3 class="holo-card-title">6 EPIC THEMES</h3>
+                    <p class="holo-card-desc">Cyberpunk • Matrix • Vaporwave
+Amber • Neon • Midnight</p>
+                </div>
+                <div class="scanlines"></div>
+            </div>
+
+            <!-- Card 2: System-Wide Hotkey -->
+            <div class="holo-card holo-cyan">
+                <div class="holo-card-bg"></div>
+                <div class="holo-rivet rivet-tl"></div>
+                <div class="holo-rivet rivet-tr"></div>
+                <div class="holo-rivet rivet-bl"></div>
+                <div class="holo-card-content">
+                    <h3 class="holo-card-title">SYSTEM-WIDE HOTKEY</h3>
+                    <p class="holo-card-desc">Ctrl+Shift+Space
+Works in ANY application</p>
+                </div>
+                <div class="scanlines"></div>
+            </div>
+
+            <!-- Card 3: Real-Time VU Meter -->
+            <div class="holo-card holo-green">
+                <div class="holo-card-bg"></div>
+                <div class="holo-rivet rivet-tl"></div>
+                <div class="holo-rivet rivet-tr"></div>
+                <div class="holo-rivet rivet-bl"></div>
+                <div class="holo-card-content">
+                    <h3 class="holo-card-title">REAL-TIME VU METER</h3>
+                    <p class="holo-card-desc">Visual audio feedback
+Auto-volume ducking</p>
+                </div>
+                <div class="scanlines"></div>
+            </div>
+
+            <!-- Card 4: 100% Free Forever -->
+            <div class="holo-card holo-amber">
+                <div class="holo-card-bg"></div>
+                <div class="holo-rivet rivet-tl"></div>
+                <div class="holo-rivet rivet-tr"></div>
+                <div class="holo-rivet rivet-bl"></div>
+                <div class="holo-card-content">
+                    <h3 class="holo-card-title">100% FREE FOREVER</h3>
+                    <p class="holo-card-desc">Open source • No ads
+No hidden costs</p>
+                </div>
+                <div class="scanlines"></div>
+            </div>
+        </div>
     </section>
 
     <!-- Video Showcase Section -->
