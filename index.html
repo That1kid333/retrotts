@@ -99,58 +99,23 @@
             align-items: center;
             text-align: center;
             padding: 40px 20px;
-            background:
-                /* FOREST TREELINE - Creating recognizable tree silhouettes */
-                /* Tall trees - varying heights for natural look */
-                radial-gradient(ellipse 40px 180px at 8% 100%, #2d1a4a 0%, #2d1a4a 60%, transparent 60%),
-                radial-gradient(ellipse 35px 150px at 12% 100%, #341f52 0%, #341f52 58%, transparent 58%),
-                radial-gradient(ellipse 45px 195px at 18% 100%, #2a1848 0%, #2a1848 62%, transparent 62%),
-                radial-gradient(ellipse 38px 165px at 23% 100%, #321d50 0%, #321d50 59%, transparent 59%),
-                radial-gradient(ellipse 42px 185px at 29% 100%, #2e1a4c 0%, #2e1a4c 61%, transparent 61%),
-                radial-gradient(ellipse 36px 155px at 34% 100%, #33204f 0%, #33204f 57%, transparent 57%),
-                radial-gradient(ellipse 48px 200px at 40% 100%, #2c194a 0%, #2c194a 63%, transparent 63%),
-                radial-gradient(ellipse 40px 175px at 46% 100%, #301c4d 0%, #301c4d 60%, transparent 60%),
-                radial-gradient(ellipse 44px 190px at 52% 100%, #2d1a4b 0%, #2d1a4b 62%, transparent 62%),
-                radial-gradient(ellipse 37px 160px at 58% 100%, #341f51 0%, #341f51 58%, transparent 58%),
-                radial-gradient(ellipse 46px 195px at 64% 100%, #2b1949 0%, #2b1949 63%, transparent 63%),
-                radial-gradient(ellipse 39px 170px at 70% 100%, #311e4e 0%, #311e4e 59%, transparent 59%),
-                radial-gradient(ellipse 43px 188px at 76% 100%, #2e1a4c 0%, #2e1a4c 61%, transparent 61%),
-                radial-gradient(ellipse 41px 180px at 82% 100%, #2f1d4d 0%, #2f1d4d 60%, transparent 60%),
-                radial-gradient(ellipse 38px 165px at 88% 100%, #321f50 0%, #321f50 59%, transparent 59%),
-                radial-gradient(ellipse 45px 192px at 94% 100%, #2c1a4a 0%, #2c1a4a 62%, transparent 62%),
-                /* MOUNTAIN PEAKS - Behind the forest */
-                radial-gradient(ellipse 600px 350px at 25% 82%, rgba(50, 35, 70, 0.85) 0%, transparent 70%),
-                radial-gradient(ellipse 700px 400px at 55% 85%, rgba(45, 30, 65, 0.8) 0%, transparent 72%),
-                radial-gradient(ellipse 650px 380px at 80% 83%, rgba(48, 33, 68, 0.82) 0%, transparent 71%),
-                /* DISTANT MOUNTAIN RANGE - Hazy blue peaks */
-                radial-gradient(ellipse 900px 280px at 40% 75%, rgba(40, 45, 80, 0.6) 0%, transparent 68%),
-                radial-gradient(ellipse 850px 260px at 70% 76%, rgba(38, 42, 75, 0.55) 0%, transparent 66%),
-                /* HORIZON GLOW - Purple twilight atmosphere */
-                radial-gradient(ellipse 120% 35% at 50% 78%, rgba(100, 50, 140, 0.2) 0%, transparent 55%),
-                /* STARS - Twinkling night sky */
-                radial-gradient(circle at 15% 12%, white 0%, transparent 1.5px),
-                radial-gradient(circle at 28% 8%, rgba(200, 220, 255, 0.9) 0%, transparent 1px),
-                radial-gradient(circle at 42% 15%, rgba(255, 255, 255, 0.95) 0%, transparent 1.2px),
-                radial-gradient(circle at 58% 10%, rgba(220, 200, 255, 0.85) 0%, transparent 1px),
-                radial-gradient(circle at 71% 18%, white 0%, transparent 1.3px),
-                radial-gradient(circle at 85% 12%, rgba(200, 230, 255, 0.9) 0%, transparent 1px),
-                radial-gradient(circle at 22% 22%, rgba(255, 255, 255, 0.7) 0%, transparent 0.8px),
-                radial-gradient(circle at 65% 20%, rgba(210, 210, 255, 0.8) 0%, transparent 1px),
-                radial-gradient(circle at 90% 25%, rgba(255, 255, 255, 0.75) 0%, transparent 0.9px),
-                radial-gradient(circle at 35% 5%, white 0%, transparent 1.1px),
-                /* CYBERPUNK GLOW - Subtle neon atmosphere */
-                radial-gradient(ellipse at 30% 45%, rgba(255, 0, 255, 0.05) 0%, transparent 55%),
-                radial-gradient(ellipse at 70% 50%, rgba(0, 255, 255, 0.04) 0%, transparent 50%),
-                /* TWILIGHT SKY - Deep purple to black */
-                linear-gradient(180deg,
-                    #1f0d3a 0%,
-                    #180a2e 12%,
-                    #120822 28%,
-                    #0c0518 50%,
-                    #060310 75%,
-                    #000000 100%);
             position: relative;
             z-index: 1;
+            background:
+                /* Dark gradient overlay for text readability */
+                linear-gradient(180deg,
+                    rgba(0, 0, 0, 0.3) 0%,
+                    rgba(0, 0, 0, 0.2) 40%,
+                    rgba(0, 0, 0, 0.4) 100%),
+                /* Cyberpunk neon glow overlay */
+                radial-gradient(ellipse at 50% 50%, rgba(255, 0, 255, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 30% 70%, rgba(0, 255, 255, 0.06) 0%, transparent 50%),
+                /* AI Generated Prehistoric Cyberpunk Landscape */
+                url('images/cyberpunk-landscape.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         /* Removed overlay so mountains are fully visible */
