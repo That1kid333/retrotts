@@ -761,11 +761,11 @@
         <p class="tagline">The Most Beautiful Speech-to-Text Terminal Ever Created</p>
 
         <div>
-            <a href="#" class="download-btn" onclick="trackDownload('windows')">
+            <a href="#" class="download-btn" onclick="trackDownload('windows'); return false;">
                 ⬇ DOWNLOAD FOR WINDOWS
             </a>
             <br>
-            <a href="https://github.com/yourusername/retro-tts" class="download-btn github-btn" target="_blank">
+            <a href="https://github.com/That1kid333/retrotts" class="download-btn github-btn" target="_blank">
                 🌟 VIEW ON GITHUB
             </a>
         </div>
@@ -1087,18 +1087,13 @@ No hidden costs</p>
             // Firebase Storage download URL
             const downloadUrl = 'https://firebasestorage.googleapis.com/v0/b/streamblur-923d5.firebasestorage.app/o/retrotts-videos%2FRetroTTS-AllThemes-v1.0.zip?alt=media';
 
-            // Create temporary link and trigger download
-            const link = document.createElement('a');
-            link.href = downloadUrl;
-            link.download = 'RetroTTS-AllThemes-v1.0.zip';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            // Open download in new window (most reliable method)
+            window.open(downloadUrl, '_blank');
 
-            // Redirect to thank you page
+            // Redirect to thank you page after short delay
             setTimeout(function() {
                 window.location.href = 'thank-you.html';
-            }, 500);
+            }, 1000);
         }
 
         // ============================================
