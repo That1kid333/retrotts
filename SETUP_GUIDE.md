@@ -137,7 +137,7 @@ Replace `YOUR-GA-ID` with your actual Google Analytics ID.
 - `system_speech_retro.py`
 - `system_speech_to_text_enhanced.py` (basic version)
 - `test_speech.py`
-- `requirements.txt`
+- `requirements-desktop.txt`
 - `README.md`
 - `LICENSE.txt`
 - `RETRO_TUI_GUIDE.md`

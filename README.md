@@ -82,7 +82,7 @@ git clone https://github.com/yourusername/retro-tts.git
 cd retro-tts
 
 # Install dependencies
-pip install -r requirements.txt
+pip install -r requirements-desktop.txt
 
 # Run the application
 python system_speech_retro.py
