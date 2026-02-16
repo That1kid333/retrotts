@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Retro TTS - Beautiful retro-cyberpunk terminal for system-wide speech-to-text on Windows. Free download!">
+    <title>Retro TTS - Free Cyberpunk Speech-to-Text Terminal</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            overflow-x: hidden;
+        }
+
+        /* Animated Matrix Background */
+        #matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.1;
+        }
+
+        /* Scanline effect */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.15),
+                rgba(0, 0, 0, 0.15) 1px,
+                transparent 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 1000;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100%); }
+        }
+
+        /* Glitch effect animation */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .glitch {
+            animation: glitch 0.3s infinite;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, #0a0a0a 0%, #1a0033 100%);
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .logo {
+            font-size: clamp(0.6rem, 2vw, 1rem);
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            margin-bottom: 30px;
+            white-space: pre;
+            line-height: 1.2;
+            animation: flicker 2s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            color: #ff00ff;
+            text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+            margin-bottom: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff; }
+            to { text-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff, 0 0 80px #ff00ff; }
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            color: #00ff00;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px #00ff00;
+            position: relative;
+            z-index: 2;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            font-family: 'Share Tech Mono', monospace;
+            color: #0a0a0a;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin: 10px;
+            animation: pulse 2s infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .download-btn:hover {
+            transform: scale(1.1) !important;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 60px rgba(255, 0, 255, 0.8);
+        }
+
+        .github-btn {
+            background: linear-gradient(45deg, #00ff00, #00ffff);
+        }
+
+        /* Video Showcase Section */
+        .video-showcase {
+            padding: 100px 20px;
+            background: #0a0a0a;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #00ffff;
+            text-shadow: 0 0 20px #00ffff;
+            margin-bottom: 60px;
+            text-transform: uppercase;
+        }
+
+        .video-container {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            border: 3px solid #00ffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.5);
+            position: relative;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-placeholder {
+            background: #000;
+            padding: 100px 40px;
+            text-align: center;
+            color: #00ffff;
+            font-size: 1.2rem;
+        }
+
+        /* Theme Grid */
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .theme-card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .theme-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 0 40px;
+        }
+
+        .theme-card.cyberpunk {
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .theme-card.cyberpunk:hover { box-shadow: 0 0 40px rgba(0, 255, 255, 0.6); }
+
+        .theme-card.matrix {
+            border-color: #00ff00;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .theme-card.matrix:hover { box-shadow: 0 0 40px rgba(0, 255, 0, 0.6); }
+
+        .theme-card.vaporwave {
+            border-color: #ff00ff;
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+        }
+
+        .theme-card.vaporwave:hover { box-shadow: 0 0 40px rgba(255, 0, 255, 0.6); }
+
+        .theme-card.amber {
+            border-color: #ffaa00;
+            box-shadow: 0 0 20px rgba(255, 170, 0, 0.3);
+        }
+
+        .theme-card.amber:hover { box-shadow: 0 0 40px rgba(255, 170, 0, 0.6); }
+
+        .theme-card.neon {
+            border-color: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .theme-card.neon:hover { box-shadow: 0 0 40px rgba(255, 0, 0, 0.6); }
+
+        .theme-card.midnight {
+            border-color: #0099ff;
+            box-shadow: 0 0 20px rgba(0, 153, 255, 0.3);
+        }
+
+        .theme-card.midnight:hover { box-shadow: 0 0 40px rgba(0, 153, 255, 0.6); }
+
+        .theme-video {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .theme-info {
+            padding: 20px;
+        }
+
+        .theme-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .theme-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+
+        .theme-download-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .theme-download-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        /* Animated stats */
+        .stats-section {
+            padding: 80px 20px;
+            background: #1a0033;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: #00ff00;
+            margin-top: 10px;
+        }
+
+        /* AdSense placeholder */
+        .ad-space {
+            max-width: 728px;
+            height: 90px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px dashed #00ff00;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00ff00;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 2px solid #00ffff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-links a {
+            color: #00ffff;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Rain Background -->
+    <canvas id="matrix-bg"></canvas>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <pre class="logo">
+╔═══════════════════════════════════════════════════════════════════════╗
+║  ██████╗ ███████╗████████╗██████╗  ██████╗     ████████╗████████╗███████╗ ║
+║  ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗    ╚══██╔══╝╚══██╔══╝██╔════╝ ║
+║  ██████╔╝█████╗     ██║   ██████╔╝██║   ██║       ██║      ██║   ███████╗ ║
+║  ██╔══██╗██╔══╝     ██║   ██╔══██╗██║   ██║       ██║      ██║   ╚════██║ ║
+║  ██║  ██║███████╗   ██║   ██║  ██║╚██████╔╝       ██║      ██║   ███████║ ║
+║  ╚═╝  ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝        ╚═╝      ╚═╝   ╚══════╝ ║
+╚═══════════════════════════════════════════════════════════════════════╝
+        </pre>
+
+        <h1 class="glitch">RETRO TTS</h1>
+        <p class="tagline">The Most Beautiful Speech-to-Text Terminal Ever Created</p>
+
+        <div>
+            <a href="#" class="download-btn" onclick="trackDownload('windows')">
+                ⬇ DOWNLOAD FOR WINDOWS
+            </a>
+            <br>
+            <a href="https://github.com/yourusername/retro-tts" class="download-btn github-btn" target="_blank">
+                🌟 VIEW ON GITHUB
+            </a>
+        </div>
+
+        <p style="margin-top: 30px; color: #00ff00; font-size: 1.2rem; position: relative; z-index: 2;">
+            ✓ 100% FREE  ✓ OPEN SOURCE  ✓ 6 EPIC THEMES
+        </p>
+    </section>
+
+    <!-- Video Showcase Section -->
+    <section class="video-showcase fade-in">
+        <h2 class="section-title">🎬 SEE IT IN ACTION 🎬</h2>
+
+        <!-- Main Showcase Video -->
+        <div class="video-container">
+            <div class="video-placeholder">
+                📹 Theme Showcase Video (30s loop)
+                <br><br>
+                Will show: All 6 themes in succession with animations
+                <br>
+                <small>Upload: theme-showcase.mp4 here</small>
+            </div>
+            <!-- Replace placeholder with: -->
+            <!-- <video autoplay loop muted playsinline>
+                <source src="videos/theme-showcase.mp4" type="video/mp4">
+            </video> -->
+        </div>
+
+        <!-- Tutorial Video -->
+        <div class="video-container">
+            <div class="video-placeholder">
+                📹 How to Use Tutorial (60s)
+                <br><br>
+                Shows: Installation, first launch, recording, success
+                <br>
+                <small>Upload: how-to-use.mp4 here</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- AdSense Space 1 -->
+    <div class="ad-space">
+        [ YOUR ADSENSE CODE HERE - 728x90 Leaderboard ]
+    </div>
+
+    <!-- Theme Gallery Section -->
+    <section class="video-showcase fade-in">
+        <h2 class="section-title">🎨 CHOOSE YOUR THEME 🎨</h2>
+
+        <div class="theme-grid">
+            <!-- Cyberpunk Theme -->
+            <div class="theme-card cyberpunk">
+                <div class="video-placeholder theme-video" style="background: linear-gradient(45deg, #00ffff, #ff00ff);">
+                    CYBERPUNK PREVIEW
+                </div>
+                <div class="theme-info">
+                    <div class="theme-name" style="color: #00ffff;">🌃 CYBERPUNK</div>
+                    <div class="theme-desc" style="color: #00ff00;">Original - Neon Dreams<br>Cyan/Magenta/Green</div>
+                    <a href="#" class="theme-download-btn" style="border-color: #00ffff; color: #00ffff;">Download Theme</a>
+                </div>
+            </div>
+
+            <!-- Matrix Theme -->
+            <div class="theme-card matrix">
+                <div class="video-placeholder theme-video" style="background: linear-gradient(45deg, #00ff00, #00aa00);">
+                    MATRIX PREVIEW
+                </div>
+                <div class="theme-info">
+                    <div class="theme-name" style="color: #00ff00;">💚 MATRIX</div>
+                    <div class="theme-desc" style="color: #00ff00;">The Hacker - Code Rain<br>All Green</div>
+                    <a href="#" class="theme-download-btn" style="border-color: #00ff00; color: #00ff00;">Download Theme</a>
+                </div>
+            </div>
+
+            <!-- Vaporwave Theme -->
+            <div class="theme-card vaporwave">
+                <div class="video-placeholder theme-video" style="background: linear-gradient(45deg, #ff00ff, #00ffff);">
+                    VAPORWAVE PREVIEW
+                </div>
+                <div class="theme-info">
+                    <div class="theme-name" style="color: #ff00ff;">🌸 VAPORWAVE</div>
+                    <div class="theme-desc" style="color: #00ffff;">A E S T H E T I C<br>Pink & Cyan</div>
+                    <a href="#" class="theme-download-btn" style="border-color: #ff00ff; color: #ff00ff;">Download Theme</a>
+                </div>
+            </div>
+
+            <!-- Amber Theme -->
+            <div class="theme-card amber">
+                <div class="video-placeholder theme-video" style="background: linear-gradient(45deg, #ffaa00, #ff8800);">
+                    AMBER PREVIEW
+                </div>
+                <div class="theme-info">
+                    <div class="theme-name" style="color: #ffaa00;">🟡 AMBER TERMINAL</div>
+                    <div class="theme-desc" style="color: #ffcc00;">Vintage Computing<br>Classic Amber</div>
+                    <a href="#" class="theme-download-btn" style="border-color: #ffaa00; color: #ffaa00;">Download Theme</a>
+                </div>
+            </div>
+
+            <!-- Neon City Theme -->
+            <div class="theme-card neon">
+                <div class="video-placeholder theme-video" style="background: linear-gradient(45deg, #ff0000, #00ffff, #ff00ff);">
+                    NEON CITY PREVIEW
+                </div>
+                <div class="theme-info">
+                    <div class="theme-name" style="color: #ff0000;">🌈 NEON CITY</div>
+                    <div class="theme-desc" style="color: #00ffff;">Rainbow Overload<br>ALL Colors</div>
+                    <a href="#" class="theme-download-btn" style="border-color: #ff0000; color: #ff0000;">Download Theme</a>
+                </div>
+            </div>
+
+            <!-- Midnight Blue Theme -->
+            <div class="theme-card midnight">
+                <div class="video-placeholder theme-video" style="background: linear-gradient(45deg, #0099ff, #0066ff);">
+                    MIDNIGHT PREVIEW
+                </div>
+                <div class="theme-info">
+                    <div class="theme-name" style="color: #0099ff;">💙 MIDNIGHT BLUE</div>
+                    <div class="theme-desc" style="color: #00ccff;">Cool Professional<br>Azure Blues</div>
+                    <a href="#" class="theme-download-btn" style="border-color: #0099ff; color: #0099ff;">Download Theme</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section fade-in">
+        <h2 class="section-title">📊 BY THE NUMBERS 📊</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number" data-target="6">0</div>
+                <div class="stat-label">Epic Themes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="100">0</div>
+                <div class="stat-label">% Free</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="50">0</div>
+                <div class="stat-label">+ Languages</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="10">0</div>
+                <div class="stat-label">FPS UI</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AdSense Space 2 -->
+    <div class="ad-space">
+        [ YOUR ADSENSE CODE HERE - 728x90 Leaderboard ]
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p style="color: #00ffff; font-size: 1.2rem; margin-bottom: 20px;">
+            Made with ❤️ and Neon Lights
+        </p>
+
+        <div class="footer-links">
+            <a href="https://github.com/yourusername/retro-tts">GitHub</a>
+            <a href="https://github.com/yourusername/retro-tts/issues">Report Bug</a>
+            <a href="https://streamblur.com">More Tools</a>
+            <a href="mailto:your@email.com">Contact</a>
+        </div>
+
+        <p style="color: #00ff00; margin-top: 20px; font-size: 0.9rem;">
+            © 2026 Retro TTS • MIT License • Free Forever
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Matrix Rain Background
+        const canvas = document.getElementById('matrix-bg');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrix = "RETROTTS0101010101";
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00FF00';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrix[Math.floor(Math.random() * matrix.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Animated counters
+        function animateCounter(el) {
+            const target = parseInt(el.dataset.target);
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    el.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    el.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numbers = entry.target.querySelectorAll('.stat-number');
+                    numbers.forEach(num => animateCounter(num));
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statsObserver.observe(document.querySelector('.stats-section'));
+
+        // Download tracking
+        function trackDownload(platform) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'download', {
+                    'event_category': 'software',
+                    'event_label': platform,
+                    'value': 1
+                });
+            }
+            window.location.href = 'https://streamblur.com/downloads/RetroTTS-AllThemes-v1.0.zip';
+        }
+    </script>
+</body>
+</html>

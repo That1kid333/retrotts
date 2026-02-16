@@ -1,0 +1,17 @@
+[build]
+  # Don't build anything - this is a static site
+  command = "echo 'Static site - no build needed'"
+  publish = "."
+
+  # Ignore Python dependencies - they're for the desktop app, not the website
+  ignore = "/bin/false"
+
+[[redirects]]
+  from = "/*"
+  to = "/landing-page-enhanced.html"
+  status = 200
+  force = false
+
+[build.environment]
+  # Tell Netlify to skip Python dependency installation
+  PYTHON_VERSION = ""
