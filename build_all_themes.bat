@@ -7,27 +7,27 @@ echo.
 cd /d "%~dp0"
 
 echo [1/6] Building CYBERPUNK theme (original)...
-pyinstaller --onefile --noconsole --name "RetroTTS-Cyberpunk" system_speech_retro.py
+pyinstaller --onefile --name "RetroTTS-Cyberpunk" system_speech_retro.py
 echo.
 
 echo [2/6] Building MATRIX theme...
-pyinstaller --onefile --noconsole --name "RetroTTS-Matrix" system_speech_matrix.py
+pyinstaller --onefile --name "RetroTTS-Matrix" system_speech_matrix.py
 echo.
 
 echo [3/6] Building VAPORWAVE theme...
-pyinstaller --onefile --noconsole --name "RetroTTS-Vaporwave" system_speech_vaporwave.py
+pyinstaller --onefile --name "RetroTTS-Vaporwave" system_speech_vaporwave.py
 echo.
 
 echo [4/6] Building AMBER theme...
-pyinstaller --onefile --noconsole --name "RetroTTS-Amber" system_speech_amber.py
+pyinstaller --onefile --name "RetroTTS-Amber" system_speech_amber.py
 echo.
 
 echo [5/6] Building NEON CITY theme...
-pyinstaller --onefile --noconsole --name "RetroTTS-NeonCity" system_speech_neon.py
+pyinstaller --onefile --name "RetroTTS-NeonCity" system_speech_neon.py
 echo.
 
 echo [6/6] Building MIDNIGHT BLUE theme...
-pyinstaller --onefile --noconsole --name "RetroTTS-MidnightBlue" system_speech_midnight.py
+pyinstaller --onefile --name "RetroTTS-MidnightBlue" system_speech_midnight.py
 echo.
 
 echo ================================================
