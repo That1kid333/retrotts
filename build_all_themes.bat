@@ -7,27 +7,27 @@ echo.
 cd /d "%~dp0"
 
 echo [1/6] Building CYBERPUNK theme (original)...
-pyinstaller --onefile --hidden-import=pycaw --hidden-import=comtypes --hidden-import=psutil --hidden-import=pyaudio --collect-all speech_recognition --collect-all pycaw --name "RetroTTS-Cyberpunk" system_speech_retro.py
+pyinstaller --onefile --hidden-import=pycaw --hidden-import=comtypes --hidden-import=psutil --hidden-import=pyaudio --collect-all speech_recognition --collect-all pycaw --collect-all rich --name "RetroTTS-Cyberpunk" system_speech_retro.py
 echo.
 
 echo [2/6] Building MATRIX theme...
-pyinstaller --onefile --hidden-import=pycaw --hidden-import=comtypes --hidden-import=psutil --hidden-import=pyaudio --collect-all speech_recognition --collect-all pycaw --name "RetroTTS-Matrix" system_speech_matrix.py
+pyinstaller --onefile --hidden-import=pycaw --hidden-import=comtypes --hidden-import=psutil --hidden-import=pyaudio --collect-all speech_recognition --collect-all pycaw --collect-all rich --name "RetroTTS-Matrix" system_speech_matrix.py
 echo.
 
 echo [3/6] Building VAPORWAVE theme...
-pyinstaller --onefile --hidden-import=pycaw --hidden-import=comtypes --hidden-import=psutil --hidden-import=pyaudio --collect-all speech_recognition --collect-all pycaw --name "RetroTTS-Vaporwave" system_speech_vaporwave.py
+pyinstaller --onefile --hidden-import=pycaw --hidden-import=comtypes --hidden-import=psutil --hidden-import=pyaudio --collect-all speech_recognition --collect-all pycaw --collect-all rich --name "RetroTTS-Vaporwave" system_speech_vaporwave.py
 echo.
 
 echo [4/6] Building AMBER theme...
-pyinstaller --onefile --hidden-import=pycaw --hidden-import=comtypes --hidden-import=psutil --hidden-import=pyaudio --collect-all speech_recognition --collect-all pycaw --name "RetroTTS-Amber" system_speech_amber.py
+pyinstaller --onefile --hidden-import=pycaw --hidden-import=comtypes --hidden-import=psutil --hidden-import=pyaudio --collect-all speech_recognition --collect-all pycaw --collect-all rich --name "RetroTTS-Amber" system_speech_amber.py
 echo.
 
 echo [5/6] Building NEON CITY theme...
-pyinstaller --onefile --hidden-import=pycaw --hidden-import=comtypes --hidden-import=psutil --hidden-import=pyaudio --collect-all speech_recognition --collect-all pycaw --name "RetroTTS-NeonCity" system_speech_neon.py
+pyinstaller --onefile --hidden-import=pycaw --hidden-import=comtypes --hidden-import=psutil --hidden-import=pyaudio --collect-all speech_recognition --collect-all pycaw --collect-all rich --name "RetroTTS-NeonCity" system_speech_neon.py
 echo.
 
 echo [6/6] Building MIDNIGHT BLUE theme...
-pyinstaller --onefile --hidden-import=pycaw --hidden-import=comtypes --hidden-import=psutil --hidden-import=pyaudio --collect-all speech_recognition --collect-all pycaw --name "RetroTTS-MidnightBlue" system_speech_midnight.py
+pyinstaller --onefile --hidden-import=pycaw --hidden-import=comtypes --hidden-import=psutil --hidden-import=pyaudio --collect-all speech_recognition --collect-all pycaw --collect-all rich --name "RetroTTS-MidnightBlue" system_speech_midnight.py
 echo.
 
 echo ================================================
