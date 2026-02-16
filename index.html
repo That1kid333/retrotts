@@ -1127,7 +1127,7 @@ No hidden costs</p>
         });
 
         // Scroll Observer for other sections
-        const observerOptions = {
+        const scrollObserverOptions = {
             threshold: 0.15,
             rootMargin: '0px 0px -100px 0px'
         };
@@ -1216,7 +1216,7 @@ No hidden costs</p>
                     }
                 }
             });
-        }, observerOptions);
+        }, scrollObserverOptions);
 
         // Wait for DOM to be ready, then observe all sections
         document.addEventListener('DOMContentLoaded', () => {
