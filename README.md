@@ -315,7 +315,7 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 
 <div align="center">
 
-**Made with ❤️ and neon lights**
+**Made with ❤️ and neo's lights @that1kid333**
 
 **If you like this project, give it a ⭐!**
 
