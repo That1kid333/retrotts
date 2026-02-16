@@ -81,7 +81,20 @@
             align-items: center;
             text-align: center;
             padding: 40px 20px;
-            background: linear-gradient(180deg, #0a0a0a 0%, #1a0033 100%);
+            background:
+                /* Neon tech overlay */
+                linear-gradient(180deg, rgba(10, 10, 10, 0.85) 0%, rgba(26, 0, 51, 0.9) 100%),
+                /* Prehistoric mountain silhouette */
+                linear-gradient(180deg,
+                    transparent 0%,
+                    transparent 60%,
+                    rgba(15, 15, 30, 0.4) 70%,
+                    rgba(20, 20, 40, 0.6) 80%,
+                    rgba(25, 25, 50, 0.8) 90%,
+                    rgba(30, 30, 60, 1) 100%
+                ),
+                /* Deep cosmic sky */
+                radial-gradient(ellipse at top, #0f1020 0%, #000000 100%);
             position: relative;
             z-index: 1;
         }
