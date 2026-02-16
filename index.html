@@ -100,37 +100,44 @@
             text-align: center;
             padding: 40px 20px;
             background:
-                /* Very light neon overlay */
-                linear-gradient(180deg, rgba(10, 10, 10, 0.3) 0%, rgba(26, 0, 51, 0.4) 100%),
-                /* NEAR MOUNTAINS - Solid purple peaks */
+                /* Subtle neon glow overlay */
+                linear-gradient(180deg, rgba(10, 10, 10, 0.2) 0%, rgba(26, 0, 51, 0.3) 100%),
+                /* FOREGROUND MOUNTAINS - Tall purple peaks extending high */
                 linear-gradient(180deg,
                     transparent 0%,
-                    transparent 60%,
-                    #3d2560 75%,
-                    #5d3984 90%,
-                    #6d4394 100%
+                    transparent 40%,
+                    rgba(61, 37, 96, 0.85) 50%,
+                    rgba(93, 57, 132, 0.92) 65%,
+                    rgba(109, 67, 148, 0.97) 80%,
+                    rgba(130, 80, 170, 1) 95%,
+                    rgba(140, 90, 180, 1) 100%
                 ),
-                /* MID MOUNTAINS - Blue-purple range */
+                /* NEAR PEAKS - Sharp purple mountain peaks */
+                radial-gradient(ellipse at 15% 68%, rgba(93, 57, 132, 0.75) 0%, transparent 25%),
+                radial-gradient(ellipse at 35% 72%, rgba(109, 67, 148, 0.85) 0%, transparent 30%),
+                radial-gradient(ellipse at 55% 70%, rgba(93, 57, 132, 0.8) 0%, transparent 28%),
+                radial-gradient(ellipse at 75% 74%, rgba(109, 67, 148, 0.78) 0%, transparent 26%),
+                radial-gradient(ellipse at 90% 69%, rgba(93, 57, 132, 0.82) 0%, transparent 27%),
+                /* MID RANGE MOUNTAINS - Blue-purple distant range */
                 linear-gradient(180deg,
                     transparent 0%,
-                    transparent 65%,
-                    transparent 70%,
-                    #2a3a6e 76%,
-                    transparent 78%
+                    transparent 48%,
+                    rgba(42, 58, 110, 0.5) 56%,
+                    rgba(42, 58, 110, 0.7) 64%,
+                    rgba(50, 70, 130, 0.85) 72%,
+                    rgba(42, 58, 110, 0.6) 76%,
+                    transparent 80%
                 ),
-                /* DISTANT MOUNTAINS - Dark blue peaks */
+                /* DISTANT PEAKS - Far blue mountains */
+                radial-gradient(ellipse at 25% 62%, rgba(26, 42, 78, 0.45) 0%, transparent 20%),
+                radial-gradient(ellipse at 50% 65%, rgba(26, 42, 78, 0.55) 0%, transparent 24%),
+                radial-gradient(ellipse at 80% 63%, rgba(26, 42, 78, 0.5) 0%, transparent 22%),
+                /* COSMIC SKY - Rich purple/blue starlit gradient */
                 linear-gradient(180deg,
-                    transparent 0%,
-                    transparent 68%,
-                    #1a2a4e 73%,
-                    transparent 75%
-                ),
-                /* COSMIC SKY - Visible purple/blue gradient */
-                linear-gradient(180deg,
-                    #1a0f40 0%,
-                    #2a1550 20%,
-                    #1a0a30 50%,
-                    #0a0520 80%,
+                    #2a1550 0%,
+                    #1a0f40 12%,
+                    #1a0a30 35%,
+                    #0a0520 65%,
                     #000000 100%);
             position: relative;
             z-index: 1;
