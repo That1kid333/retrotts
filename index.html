@@ -6,6 +6,9 @@
     <meta name="description" content="Retro TTS - Beautiful retro-cyberpunk terminal for system-wide speech-to-text on Windows. Free download!">
     <title>Retro TTS - Free Cyberpunk Speech-to-Text Terminal</title>
 
+    <!-- Anime.js for scroll animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
@@ -615,6 +618,15 @@
             50% { text-shadow: 0 0 20px, 0 0 30px, 0 0 40px; }
         }
 
+        /* Scroll Animation Classes */
+        .animate-on-scroll {
+            opacity: 0;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .logo {
@@ -1069,20 +1081,185 @@ No hidden costs</p>
                 });
             }
 
-            // GitHub Release download URL (update version number as needed)
-            const downloadUrl = 'https://github.com/That1kid333/retrotts/releases/download/v1.0.0/RetroTTS-AllThemes-v1.0.zip';
-
-            // Start download using hidden iframe
-            const iframe = document.createElement('iframe');
-            iframe.style.display = 'none';
-            iframe.src = downloadUrl;
-            document.body.appendChild(iframe);
-
-            // Redirect to thank you page after starting download
-            setTimeout(function() {
-                window.location.href = 'thank-you.html';
-            }, 1500);
+            // Navigate directly to GitHub releases page
+            window.location.href = 'https://github.com/That1kid333/retrotts/releases/latest';
         }
+
+        // ============================================
+        // SCROLL ANIMATIONS WITH ANIME.JS
+        // ============================================
+
+        // Hero section entrance animation
+        anime({
+            targets: '.hero .logo',
+            opacity: [0, 1],
+            translateY: [50, 0],
+            duration: 1200,
+            easing: 'easeOutExpo',
+            delay: 200
+        });
+
+        anime({
+            targets: '.hero h1',
+            opacity: [0, 1],
+            scale: [0.8, 1],
+            duration: 1000,
+            easing: 'easeOutExpo',
+            delay: 400
+        });
+
+        anime({
+            targets: '.hero .tagline',
+            opacity: [0, 1],
+            translateY: [30, 0],
+            duration: 1000,
+            easing: 'easeOutExpo',
+            delay: 600
+        });
+
+        anime({
+            targets: '.hero .download-btn',
+            opacity: [0, 1],
+            translateY: [30, 0],
+            duration: 800,
+            easing: 'easeOutExpo',
+            delay: anime.stagger(150, {start: 800})
+        });
+
+        // Scroll Observer for other sections
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    entry.target.classList.add('animated');
+
+                    const animationType = entry.target.dataset.animation;
+
+                    switch(animationType) {
+                        case 'fade-up':
+                            anime({
+                                targets: entry.target,
+                                opacity: [0, 1],
+                                translateY: [60, 0],
+                                duration: 1200,
+                                easing: 'easeOutExpo'
+                            });
+                            break;
+
+                        case 'fade-in':
+                            anime({
+                                targets: entry.target,
+                                opacity: [0, 1],
+                                duration: 1000,
+                                easing: 'easeOutQuad'
+                            });
+                            break;
+
+                        case 'zoom-in':
+                            anime({
+                                targets: entry.target,
+                                opacity: [0, 1],
+                                scale: [0.8, 1],
+                                duration: 1000,
+                                easing: 'easeOutExpo'
+                            });
+                            break;
+
+                        case 'slide-left':
+                            anime({
+                                targets: entry.target,
+                                opacity: [0, 1],
+                                translateX: [100, 0],
+                                duration: 1200,
+                                easing: 'easeOutExpo'
+                            });
+                            break;
+
+                        case 'slide-right':
+                            anime({
+                                targets: entry.target,
+                                opacity: [0, 1],
+                                translateX: [-100, 0],
+                                duration: 1200,
+                                easing: 'easeOutExpo'
+                            });
+                            break;
+
+                        case 'stagger-cards':
+                            const cards = entry.target.querySelectorAll('.theme-card, .holo-card');
+                            anime({
+                                targets: cards,
+                                opacity: [0, 1],
+                                translateY: [80, 0],
+                                scale: [0.9, 1],
+                                duration: 1200,
+                                easing: 'easeOutExpo',
+                                delay: anime.stagger(150)
+                            });
+                            break;
+
+                        case 'stagger-features':
+                            const features = entry.target.querySelectorAll('.feature-card');
+                            anime({
+                                targets: features,
+                                opacity: [0, 1],
+                                translateY: [60, 0],
+                                duration: 1000,
+                                easing: 'easeOutExpo',
+                                delay: anime.stagger(100)
+                            });
+                            break;
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Wait for DOM to be ready, then observe all sections
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add animation attributes to sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                section.classList.add('animate-on-scroll');
+
+                // Assign animation types based on section
+                if (section.classList.contains('themes-section')) {
+                    section.dataset.animation = 'stagger-cards';
+                } else if (section.classList.contains('features-section')) {
+                    section.dataset.animation = 'stagger-cards';
+                } else if (section.classList.contains('stats-section')) {
+                    section.dataset.animation = 'zoom-in';
+                } else if (index % 2 === 0) {
+                    section.dataset.animation = 'fade-up';
+                } else {
+                    section.dataset.animation = 'fade-up';
+                }
+
+                scrollObserver.observe(section);
+            });
+
+            // Observe individual theme cards if they exist
+            document.querySelectorAll('.theme-card').forEach(card => {
+                card.style.opacity = '0';
+            });
+
+            // Observe holographic cards
+            document.querySelectorAll('.holo-card').forEach(card => {
+                card.style.opacity = '0';
+            });
+        });
+
+        // Add parallax effect to hero background
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero && scrolled < window.innerHeight) {
+                hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
+            }
+        });
     </script>
 </body>
 </html>

@@ -42,6 +42,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Environment variables (contains API keys - DO NOT COMMIT)
+.env
+
 # Remotion build outputs (keep source, ignore builds)
 remotion-videos/node_modules/
 remotion-videos/.remotion/

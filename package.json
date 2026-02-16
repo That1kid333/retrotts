@@ -1,0 +1,15 @@
+{
+  "name": "retro-tts-website",
+  "version": "1.0.0",
+  "description": "Retro TTS - Cyberpunk Speech-to-Text Terminal Website",
+  "scripts": {
+    "generate-landscape": "node generate-landscape.js"
+  },
+  "dependencies": {
+    "replicate": "^0.34.1",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {},
+  "author": "that1kid333",
+  "license": "MIT"
+}
