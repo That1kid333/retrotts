@@ -100,27 +100,38 @@
             text-align: center;
             padding: 40px 20px;
             background:
-                /* Neon tech overlay - lighter so nature shows through */
-                linear-gradient(180deg, rgba(10, 10, 10, 0.6) 0%, rgba(26, 0, 51, 0.7) 100%),
-                /* Prehistoric mountain silhouettes - more visible */
+                /* Very light neon overlay */
+                linear-gradient(180deg, rgba(10, 10, 10, 0.3) 0%, rgba(26, 0, 51, 0.4) 100%),
+                /* NEAR MOUNTAINS - Solid purple peaks */
                 linear-gradient(180deg,
                     transparent 0%,
-                    transparent 50%,
-                    rgba(30, 20, 60, 0.6) 65%,
-                    rgba(50, 30, 80, 0.7) 75%,
-                    rgba(70, 40, 100, 0.85) 85%,
-                    rgba(90, 50, 120, 0.95) 95%,
-                    #1a0033 100%
+                    transparent 60%,
+                    #3d2560 75%,
+                    #5d3984 90%,
+                    #6d4394 100%
                 ),
-                /* Distant mountain layer */
+                /* MID MOUNTAINS - Blue-purple range */
                 linear-gradient(180deg,
                     transparent 0%,
-                    transparent 55%,
-                    rgba(15, 25, 50, 0.4) 70%,
-                    transparent 72%
+                    transparent 65%,
+                    transparent 70%,
+                    #2a3a6e 76%,
+                    transparent 78%
                 ),
-                /* Deep cosmic aurora sky */
-                radial-gradient(ellipse at top, #1a1040 0%, #0a0520 50%, #000000 100%);
+                /* DISTANT MOUNTAINS - Dark blue peaks */
+                linear-gradient(180deg,
+                    transparent 0%,
+                    transparent 68%,
+                    #1a2a4e 73%,
+                    transparent 75%
+                ),
+                /* COSMIC SKY - Visible purple/blue gradient */
+                linear-gradient(180deg,
+                    #1a0f40 0%,
+                    #2a1550 20%,
+                    #1a0a30 50%,
+                    #0a0520 80%,
+                    #000000 100%);
             position: relative;
             z-index: 1;
         }
