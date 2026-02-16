@@ -1,0 +1,8 @@
+SpeechRecognition>=3.10.1
+PyAudio>=0.2.14
+keyboard>=0.13.5
+pynput>=1.7.6
+rich>=14.0.0
+pycaw>=20251023
+comtypes>=1.4.0
+psutil>=7.0.0

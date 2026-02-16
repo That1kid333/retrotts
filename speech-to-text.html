@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech to Text</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #startBtn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        #startBtn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        #startBtn.listening {
+            background: #f44336;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        #clearBtn {
+            background: #ff9800;
+            color: white;
+        }
+
+        #clearBtn:hover {
+            background: #e68900;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+        }
+
+        #copyBtn {
+            background: #2196F3;
+            color: white;
+        }
+
+        #copyBtn:hover {
+            background: #0b7dda;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #output {
+            width: 100%;
+            min-height: 300px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            line-height: 1.6;
+            resize: vertical;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        #output:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .status.listening {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .status.ready {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status.error {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .language-selector {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        select {
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            background: white;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎤 Speech to Text</h1>
+        <p class="subtitle">Click "Start Listening" and speak into your microphone</p>
+
+        <div class="language-selector">
+            <label for="language">Language:</label>
+            <select id="language">
+                <option value="en-US">English (US)</option>
+                <option value="en-GB">English (UK)</option>
+                <option value="es-ES">Spanish</option>
+                <option value="fr-FR">French</option>
+                <option value="de-DE">German</option>
+                <option value="it-IT">Italian</option>
+                <option value="pt-BR">Portuguese (Brazil)</option>
+                <option value="zh-CN">Chinese (Mandarin)</option>
+                <option value="ja-JP">Japanese</option>
+                <option value="ko-KR">Korean</option>
+            </select>
+        </div>
+
+        <div class="controls">
+            <button id="startBtn">
+                <span>▶</span>
+                <span id="btnText">Start Listening</span>
+            </button>
+            <button id="clearBtn">
+                <span>🗑️</span>
+                <span>Clear Text</span>
+            </button>
+            <button id="copyBtn">
+                <span>📋</span>
+                <span>Copy Text</span>
+            </button>
+        </div>
+
+        <textarea id="output" placeholder="Your transcribed text will appear here..."></textarea>
+
+        <div id="status" class="status ready">Ready to listen</div>
+    </div>
+
+    <script>
+        // Check for browser support
+        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+            document.getElementById('status').textContent = 'Speech recognition is not supported in this browser. Please use Chrome or Edge.';
+            document.getElementById('status').className = 'status error';
+            document.getElementById('startBtn').disabled = true;
+        } else {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+
+            const startBtn = document.getElementById('startBtn');
+            const btnText = document.getElementById('btnText');
+            const clearBtn = document.getElementById('clearBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const output = document.getElementById('output');
+            const status = document.getElementById('status');
+            const languageSelect = document.getElementById('language');
+
+            let isListening = false;
+
+            // Configure recognition
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.lang = languageSelect.value;
+
+            // Update language when changed
+            languageSelect.addEventListener('change', () => {
+                recognition.lang = languageSelect.value;
+                if (isListening) {
+                    recognition.stop();
+                    setTimeout(() => recognition.start(), 100);
+                }
+            });
+
+            // Start/Stop button
+            startBtn.addEventListener('click', () => {
+                if (isListening) {
+                    recognition.stop();
+                } else {
+                    recognition.start();
+                }
+            });
+
+            // Recognition events
+            recognition.onstart = () => {
+                isListening = true;
+                startBtn.classList.add('listening');
+                btnText.textContent = 'Stop Listening';
+                startBtn.querySelector('span:first-child').textContent = '⏸';
+                status.textContent = 'Listening... Speak now';
+                status.className = 'status listening';
+            };
+
+            recognition.onend = () => {
+                isListening = false;
+                startBtn.classList.remove('listening');
+                btnText.textContent = 'Start Listening';
+                startBtn.querySelector('span:first-child').textContent = '▶';
+                status.textContent = 'Stopped listening';
+                status.className = 'status ready';
+            };
+
+            recognition.onresult = (event) => {
+                let interimTranscript = '';
+                let finalTranscript = '';
+
+                for (let i = event.resultIndex; i < event.results.length; i++) {
+                    const transcript = event.results[i][0].transcript;
+                    if (event.results[i].isFinal) {
+                        finalTranscript += transcript + ' ';
+                    } else {
+                        interimTranscript += transcript;
+                    }
+                }
+
+                if (finalTranscript) {
+                    output.value += finalTranscript;
+                }
+            };
+
+            recognition.onerror = (event) => {
+                console.error('Speech recognition error:', event.error);
+                status.textContent = `Error: ${event.error}`;
+                status.className = 'status error';
+
+                if (event.error === 'no-speech') {
+                    status.textContent = 'No speech detected. Please try again.';
+                } else if (event.error === 'not-allowed') {
+                    status.textContent = 'Microphone access denied. Please allow microphone access.';
+                }
+            };
+
+            // Clear button
+            clearBtn.addEventListener('click', () => {
+                output.value = '';
+                status.textContent = 'Text cleared';
+                status.className = 'status ready';
+            });
+
+            // Copy button
+            copyBtn.addEventListener('click', () => {
+                if (output.value) {
+                    output.select();
+                    document.execCommand('copy');
+                    status.textContent = 'Text copied to clipboard!';
+                    status.className = 'status ready';
+                    setTimeout(() => {
+                        if (!isListening) {
+                            status.textContent = 'Ready to listen';
+                        }
+                    }, 2000);
+                } else {
+                    status.textContent = 'No text to copy';
+                    status.className = 'status error';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

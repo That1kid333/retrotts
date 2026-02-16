@@ -1,0 +1,20 @@
+{
+  "name": "retro-tts-videos",
+  "version": "1.0.0",
+  "description": "Remotion videos for Retro TTS",
+  "scripts": {
+    "start": "remotion studio",
+    "build": "remotion render AllThemesShowcase out/all-themes-showcase.mp4 && remotion render Cyberpunk out/cyberpunk.mp4 && remotion render Matrix out/matrix.mp4 && remotion render Vaporwave out/vaporwave.mp4 && remotion render Amber out/amber.mp4 && remotion render Neon out/neon.mp4 && remotion render Midnight out/midnight.mp4",
+    "render": "remotion render"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@types/react": "^18.2.0",
+    "typescript": "^5.0.0"
+  }
+}
