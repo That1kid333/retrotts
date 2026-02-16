@@ -118,9 +118,9 @@ export const AnimatedTerminal: React.FC<AnimatedTerminalProps> = ({
         style={{
           width: "100%",
           height: "100%",
-          padding: "20px",
+          padding: "40px",
           fontFamily: "monospace",
-          fontSize: "14px",
+          fontSize: "28px",
           color: themeConfig.primary,
         }}
       >
@@ -136,7 +136,7 @@ export const AnimatedTerminal: React.FC<AnimatedTerminalProps> = ({
         >
           <pre
             style={{
-              fontSize: "24px",
+              fontSize: "48px",
               color: themeConfig.secondary,
               textShadow: `0 0 10px ${themeConfig.secondary}, 0 0 20px ${themeConfig.secondary}`,
               lineHeight: 1.2,
@@ -224,7 +224,7 @@ export const AnimatedTerminal: React.FC<AnimatedTerminalProps> = ({
               }}
             >
               <div style={{ color: themeConfig.dim, marginBottom: "5px" }}>INFO:</div>
-              <div style={{ color: themeConfig.accent, fontSize: "12px" }}>
+              <div style={{ color: themeConfig.accent, fontSize: "24px" }}>
                 {infoText}
               </div>
             </div>
@@ -258,9 +258,9 @@ export const AnimatedTerminal: React.FC<AnimatedTerminalProps> = ({
               <div
                 style={{
                   width: "100%",
-                  height: "30px",
-                  border: `2px solid ${themeConfig.primary}`,
-                  padding: "3px",
+                  height: "60px",
+                  border: `4px solid ${themeConfig.primary}`,
+                  padding: "6px",
                   marginBottom: "15px",
                 }}
               >
@@ -281,7 +281,7 @@ export const AnimatedTerminal: React.FC<AnimatedTerminalProps> = ({
                   style={{
                     color: themeConfig.secondary,
                     fontWeight: "bold",
-                    fontSize: "20px",
+                    fontSize: "40px",
                   }}
                 >
                   {Math.floor(audioLevel * 100)}%
@@ -321,7 +321,7 @@ export const AnimatedTerminal: React.FC<AnimatedTerminalProps> = ({
               <div
                 style={{
                   color: themeConfig.primary,
-                  fontSize: "16px",
+                  fontSize: "32px",
                   lineHeight: 1.6,
                   minHeight: "100px",
                 }}

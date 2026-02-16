@@ -59,11 +59,11 @@ const ThemeSection: React.FC<{ theme: typeof themes[0]; startFrame: number }> = 
         {/* Theme Name */}
         <h1
           style={{
-            fontSize: 120,
+            fontSize: 180,
             color: theme.color,
             textShadow: `0 0 ${glow}px ${theme.color}, 0 0 ${glow * 2}px ${theme.accent}`,
-            marginBottom: 40,
-            letterSpacing: 10,
+            marginBottom: 60,
+            letterSpacing: 15,
           }}
         >
           {theme.name}
@@ -72,12 +72,12 @@ const ThemeSection: React.FC<{ theme: typeof themes[0]; startFrame: number }> = 
         {/* Simulated VU Meter */}
         <div
           style={{
-            width: 800,
-            height: 40,
-            border: `3px solid ${theme.color}`,
-            borderRadius: 10,
-            padding: 5,
-            boxShadow: `0 0 20px ${theme.color}`,
+            width: 1200,
+            height: 80,
+            border: `5px solid ${theme.color}`,
+            borderRadius: 15,
+            padding: 10,
+            boxShadow: `0 0 30px ${theme.color}`,
           }}
         >
           <div
@@ -94,10 +94,11 @@ const ThemeSection: React.FC<{ theme: typeof themes[0]; startFrame: number }> = 
         {/* Status Text */}
         <p
           style={{
-            fontSize: 36,
+            fontSize: 72,
             color: theme.accent,
-            marginTop: 40,
-            textShadow: `0 0 10px ${theme.accent}`,
+            marginTop: 60,
+            textShadow: `0 0 15px ${theme.accent}`,
+            fontWeight: "bold",
           }}
         >
           {relativeFrame < 60 ? "● READY" : relativeFrame < 120 ? "● RECORDING" : "✓ COMPLETE"}

@@ -582,10 +582,10 @@
         </p>
 
         <div class="footer-links">
-            <a href="https://github.com/yourusername/retro-tts">GitHub</a>
-            <a href="https://github.com/yourusername/retro-tts/issues">Report Bug</a>
+            <a href="https://github.com/That1kid333/retrotts">GitHub</a>
+            <a href="https://github.com/That1kid333/retrotts/issues">Report Bug</a>
             <a href="https://streamblur.com">More Tools</a>
-            <a href="mailto:your@email.com">Contact</a>
+            <a href="mailto:that1kid333@gmail.com">Contact</a>
         </div>
 
         <p style="color: #00ff00; margin-top: 20px; font-size: 0.9rem;">
@@ -687,7 +687,20 @@
                     'value': 1
                 });
             }
-            window.location.href = 'https://streamblur.com/downloads/RetroTTS-AllThemes-v1.0.zip';
+
+            // GitHub Release download URL (update version number as needed)
+            const downloadUrl = 'https://github.com/That1kid333/retrotts/releases/download/v1.0.0/RetroTTS-AllThemes-v1.0.zip';
+
+            // Start download using hidden iframe
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = downloadUrl;
+            document.body.appendChild(iframe);
+
+            // Redirect to thank you page after starting download
+            setTimeout(function() {
+                window.location.href = 'thank-you.html';
+            }, 1500);
         }
     </script>
 </body>
